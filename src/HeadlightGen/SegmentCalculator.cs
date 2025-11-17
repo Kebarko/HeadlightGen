@@ -17,7 +17,7 @@ public class SegmentCalculator
 
         for (int circle = 1; circle <= circles; circle++)
         {
-            float radius = maxRadius / circles * circle;
+            float radius = maxRadius / 100 / circles * circle;
             int segments = increment * circle;
 
             for (int seg = 0; seg < segments; seg++)
