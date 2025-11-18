@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace HeadlightGen;
+namespace KE.MSTS.HeadlightGen;
 
 /// <summary>
 /// Interaction logic for App.xaml
