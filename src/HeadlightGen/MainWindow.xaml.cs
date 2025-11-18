@@ -1,4 +1,8 @@
-﻿using System.Globalization;
+﻿using System.ComponentModel;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,6 +15,8 @@ namespace KE.MSTS.HeadlightGen;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private const string SettingsPath = "appsettings.json";
+
     public MainWindow()
     {
         InitializeComponent();
@@ -33,11 +39,45 @@ public partial class MainWindow : Window
     {
         base.OnInitialized(e);
 
-        InputCenterX.Text = "0";
-        InputCenterY.Text = "0";
-        InputCircles.Text = "5";
-        InputMaxRadius.Text = "15";
-        InputIncrement.Text = "6";
+        string? json = File.Exists(SettingsPath)
+            ? File.ReadAllText(SettingsPath, Encoding.UTF8)
+            : null;
+
+        if (!string.IsNullOrWhiteSpace(json))
+        {
+            try
+            {
+                var settings = JsonSerializer.Deserialize<AppSettings>(json);
+                if (settings != null)
+                {
+                    InputCenterX.Text = settings.CenterX ?? string.Empty;
+                    InputCenterY.Text = settings.CenterY ?? string.Empty;
+                    InputCircles.Text = settings.Circles ?? string.Empty;
+                    InputMaxRadius.Text = settings.MaxRadius ?? string.Empty;
+                    InputIncrement.Text = settings.Increment ?? string.Empty;
+                }
+            }
+            catch
+            {
+                // Ignore errors
+            }
+        }
+    }
+
+    protected override void OnClosing(CancelEventArgs e)
+    {
+        base.OnClosing(e);
+
+        string json = JsonSerializer.Serialize(new AppSettings
+        {
+            CenterX = InputCenterX.Text,
+            CenterY = InputCenterY.Text,
+            Circles = InputCircles.Text,
+            MaxRadius = InputMaxRadius.Text,
+            Increment = InputIncrement.Text
+        }, new JsonSerializerOptions { WriteIndented = true });
+
+        File.WriteAllText(SettingsPath, json, Encoding.UTF8);
     }
 
     private void Redraw()
