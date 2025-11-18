@@ -49,7 +49,7 @@
             <Label Grid.Row="4" Grid.Column="0" Content="Increment"/>
             <TextBox Grid.Row="4" Grid.Column="1" Name="InputIncrement" />
 
-            <Button Grid.Row="5" Grid.Column="1" Content="Generate" />
+            <Button Grid.Row="5" Grid.Column="1" Content="Generate" Name="GenerateButton" />
         </Grid>
         <Canvas Grid.Row="0" Grid.Column="1" Name="TbCanvas" Margin="50" />
     </Grid>
