@@ -53,8 +53,8 @@ public class Renderer
         {
             var ellipse = new Ellipse
             {
-                Width = 6,
-                Height = 6,
+                Width = 8,
+                Height = 8,
                 Fill = first ? Brushes.Red : Brushes.Green
             };
 
