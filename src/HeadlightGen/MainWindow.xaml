@@ -1,12 +1,56 @@
-﻿<Window x:Class="HeadlightGen.MainWindow"
+﻿<Window x:Class="KE.MSTS.HeadlightGen.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HeadlightGen"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Width="800" Height="800"
+        WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="100px" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="10, 3, 1, 3"/>
+                </Style>
+            </Grid.Resources>
 
+            <Label Grid.Row="0" Grid.Column="0" Content="Center X"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Name="InputCenterX" />
+            <Label Grid.Row="0" Grid.Column="2" Content="m"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Center Y"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="InputCenterY" />
+            <Label Grid.Row="1" Grid.Column="2" Content="m"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Content="Circles"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Name="InputCircles" />
+
+            <Label Grid.Row="3" Grid.Column="0" Content="Max. radius"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Name="InputMaxRadius" />
+            <Label Grid.Row="3" Grid.Column="2" Content="cm"/>
+
+            <Label Grid.Row="4" Grid.Column="0" Content="Increment"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Name="InputIncrement" />
+
+            <Button Grid.Row="5" Grid.Column="1" Content="Generate" />
+        </Grid>
+        <Canvas Grid.Row="0" Grid.Column="1" Name="TbCanvas" Margin="50" />
     </Grid>
 </Window>
