@@ -14,7 +14,7 @@ public class LightGenerator
         var points = segmentCalculator.Calculate(new PointF(centerX, centerY), circles, maxRadius, increment);
 
         // Read template
-        string template = File.ReadAllText(templatePath, Encoding.UTF8);
+        string template = File.ReadAllText(templatePath, Encoding.Unicode);
 
         // Create string builder for output
         StringBuilder result = new StringBuilder();
@@ -32,6 +32,6 @@ public class LightGenerator
         result.AppendLine(")");
 
         // Write output to file
-        File.WriteAllText(outputPath, result.ToString(), Encoding.UTF8);
+        File.WriteAllText(outputPath, result.ToString(), Encoding.Unicode);
     }
 }
