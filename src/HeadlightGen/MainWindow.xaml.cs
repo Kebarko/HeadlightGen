@@ -129,7 +129,7 @@ public partial class MainWindow : Window
         var openFileDialog = new OpenFileDialog()
         {
             Title = "Select Template File",
-            Filter = "Text Files (*.txt)|*.txt",
+            Filter = "Text Files (*.inc)|*.inc",
             Multiselect = false
         };
 
@@ -139,7 +139,7 @@ public partial class MainWindow : Window
         var saveFileDialog = new SaveFileDialog()
         {
             Title = "Select Output File",
-            Filter = "Text Files (*.txt)|*.txt"
+            Filter = "Text Files (*.inc)|*.inc"
         };
 
         if (saveFileDialog.ShowDialog() != true)
