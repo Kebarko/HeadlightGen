@@ -19,6 +19,7 @@ public class LightGenerator
         // Create string builder for output
         StringBuilder result = new StringBuilder();
 
+        result.AppendLine();
         result.AppendLine($"Lights ( {points.Count}");
 
         // Iterate over points and replace placeholders in template
