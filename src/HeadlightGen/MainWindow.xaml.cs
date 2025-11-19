@@ -15,7 +15,7 @@ namespace KE.MSTS.HeadlightGen;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private const string SettingsPath = "appsettings.json";
+    private readonly string settingsPath = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
 
     public MainWindow()
     {
@@ -39,8 +39,8 @@ public partial class MainWindow : Window
     {
         base.OnInitialized(e);
 
-        string? json = File.Exists(SettingsPath)
-            ? File.ReadAllText(SettingsPath, Encoding.UTF8)
+        string? json = File.Exists(settingsPath)
+            ? File.ReadAllText(settingsPath, Encoding.UTF8)
             : null;
 
         if (!string.IsNullOrWhiteSpace(json))
@@ -77,7 +77,7 @@ public partial class MainWindow : Window
             Increment = InputIncrement.Text
         }, new JsonSerializerOptions { WriteIndented = true });
 
-        File.WriteAllText(SettingsPath, json, Encoding.UTF8);
+        File.WriteAllText(settingsPath, json, Encoding.UTF8);
     }
 
     private void Redraw()
