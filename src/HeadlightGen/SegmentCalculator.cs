@@ -23,8 +23,8 @@ public class SegmentCalculator
             for (int seg = 0; seg < segments; seg++)
             {
                 float angle = (float)(seg * 2.0 * Math.PI / segments);
-                float x = center.X + radius * (float)Math.Cos(angle);
-                float y = center.Y + radius * (float)Math.Sin(angle);
+                float x = (float)Math.Round(center.X + radius * (float)Math.Cos(angle), 3, MidpointRounding.AwayFromZero);
+                float y = (float)Math.Round(center.Y + radius * (float)Math.Sin(angle), 3, MidpointRounding.AwayFromZero);
                 result.Add(new PointF(x, y));
             }
         }

@@ -25,8 +25,8 @@ public class LightGenerator
         foreach (var point in points)
         {
             result.AppendLine(template
-                .Replace("{X}", point.X.ToString("G3", NumberFormatInfo.InvariantInfo))
-                .Replace("{Y}", point.Y.ToString("G3", NumberFormatInfo.InvariantInfo)));
+                .Replace("{X}", point.X.ToString("G", NumberFormatInfo.InvariantInfo))
+                .Replace("{Y}", point.Y.ToString("G", NumberFormatInfo.InvariantInfo)));
         }
 
         result.AppendLine(")");
