@@ -19,6 +19,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -76,7 +77,11 @@
             <Label Grid.Row="4" Grid.Column="0" Content="Increment" />
             <TextBox Grid.Row="4" Grid.Column="1" Name="InputIncrement" />
 
-            <Button Grid.Row="5" Grid.Column="1" Content="Generate" Name="GenerateButton" />
+            <Label Grid.Row="5" Grid.Column="0" Content="Base angle" />
+            <TextBox Grid.Row="5" Grid.Column="1" Name="InputBaseAngle" />
+            <Label Grid.Row="5" Grid.Column="2" Content="°" />
+
+            <Button Grid.Row="6" Grid.Column="1" Content="Generate" Name="GenerateButton" />
         </Grid>
         <Canvas Grid.Row="0" Grid.Column="1" Name="TbCanvas" Margin="50" />
     </Grid>
