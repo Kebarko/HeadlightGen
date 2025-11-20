@@ -145,8 +145,8 @@ public partial class MainWindow : Window
         if (saveFileDialog.ShowDialog() != true)
             return;
 
-        var generator = new LightGenerator();
-        generator.GenerateLight(centerX, centerY, circles, maxRadius, increment, openFileDialog.FileName, saveFileDialog.FileName);
+        var exporter = new Exporter();
+        exporter.Export(centerX, centerY, circles, maxRadius, increment, openFileDialog.FileName, saveFileDialog.FileName);
 
         MessageBox.Show("Light file generated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
     }

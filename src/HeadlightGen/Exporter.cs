@@ -5,9 +5,9 @@ using System.Text;
 
 namespace KE.MSTS.HeadlightGen;
 
-public class LightGenerator
+public class Exporter
 {
-    public void GenerateLight(float centerX, float centerY, int circles, float maxRadius, int increment, string templatePath, string outputPath)
+    public void Export(float centerX, float centerY, int circles, float maxRadius, int increment, string templatePath, string outputPath)
     {
         // Calculate points
         var segmentCalculator = new SegmentCalculator();
