@@ -47,7 +47,7 @@ public class Renderer
         // Use the smaller scale to maintain aspect ratio
         float scale = Math.Min(scaleX, scaleY);
 
-        // Calculate scaled dimensions
+        // Calculate scaled dimensions of points bounding box
         float scaledWidth  = pointsWidth  * scale;
         float scaledHeight = pointsHeight * scale;
 
@@ -55,11 +55,11 @@ public class Renderer
         float offsetX = (canvasWidth  - scaledWidth)  / 2;
         float offsetY = (canvasHeight - scaledHeight) / 2;
 
-        // Transform points to canvas coordinates
+        // Transform points to canvas coordinates and flip Y axis
         var scaledPoints = points.Select(p => new PointF
         {
             X = (p.X - minX) * scale + offsetX,
-            Y = (p.Y - minY) * scale + offsetY
+            Y = scaledHeight - (p.Y - minY) * scale + offsetY
         }).ToList();
 
         // Draw points on canvas
