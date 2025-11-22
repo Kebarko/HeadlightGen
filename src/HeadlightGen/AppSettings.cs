@@ -1,3 +1,8 @@
+using System.IO;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace KE.MSTS.HeadlightGen;
 
 /// <summary>
@@ -6,6 +11,12 @@ namespace KE.MSTS.HeadlightGen;
 /// </summary>
 public class AppSettings
 {
+    /// <summary>
+    /// The file path to the application settings JSON file.
+    /// </summary>
+    [JsonIgnore]
+    private static readonly string settingsPath = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
+
     /// <summary>
     /// Gets or sets the X coordinate of the light center point.
     /// </summary>
@@ -35,4 +46,39 @@ public class AppSettings
     /// Gets or sets the base angle in degrees for the initial segment orientation.
     /// </summary>
     public string? BaseAngle { get; set; }
+
+    /// <summary>
+    /// Serializes the current <see cref="AppSettings"/> instance to JSON (pretty-printed) and writes it to the file specified by <c>settingsPath</c>.
+    /// </summary>
+    public void Save()
+    {
+        string json = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+
+        File.WriteAllText(settingsPath, json, Encoding.UTF8);
+    }
+
+    /// <summary>
+    /// Loads an <see cref="AppSettings"/> instance from a JSON file at the specified path.
+    /// </summary>
+    /// <returns>The deserialized <see cref="AppSettings"/> instance, or <c>null</c> if the file does not exist or if deserialization fails.</returns>
+    public static AppSettings? Load()
+    {
+        if (!File.Exists(settingsPath))
+        {
+            return null;
+        }
+
+        try
+        {
+            string json = File.ReadAllText(settingsPath, Encoding.UTF8);
+
+            var settings = JsonSerializer.Deserialize<AppSettings>(json);
+            return settings;
+        }
+        catch
+        {
+            // Ignore errors
+            return null;
+        }
+    }
 }

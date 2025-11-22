@@ -1,8 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
-using System.IO;
-using System.Text;
-using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,11 +14,6 @@ namespace KE.MSTS.HeadlightGen;
 /// </summary>
 public partial class MainWindow : Window
 {
-    /// <summary>
-    /// The file path to the application settings JSON file.
-    /// </summary>
-    private readonly string settingsPath = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
-
     /// <summary>
     /// Initializes a new instance of the MainWindow class and sets up event handlers.
     /// </summary>
@@ -53,29 +45,15 @@ public partial class MainWindow : Window
     {
         base.OnInitialized(e);
 
-        string? json = File.Exists(settingsPath)
-            ? File.ReadAllText(settingsPath, Encoding.UTF8)
-            : null;
-
-        if (!string.IsNullOrWhiteSpace(json))
+        var appSsettings = AppSettings.Load();
+        if (appSsettings != null)
         {
-            try
-            {
-                var settings = JsonSerializer.Deserialize<AppSettings>(json);
-                if (settings != null)
-                {
-                    InputCenterX.Text = settings.CenterX ?? string.Empty;
-                    InputCenterY.Text = settings.CenterY ?? string.Empty;
-                    InputCircles.Text = settings.Circles ?? string.Empty;
-                    InputMaxRadius.Text = settings.MaxRadius ?? string.Empty;
-                    InputIncrement.Text = settings.Increment ?? string.Empty;
-                    InputBaseAngle.Text = settings.BaseAngle ?? string.Empty;
-                }
-            }
-            catch
-            {
-                // Ignore errors
-            }
+            InputCenterX.Text = appSsettings.CenterX ?? string.Empty;
+            InputCenterY.Text = appSsettings.CenterY ?? string.Empty;
+            InputCircles.Text = appSsettings.Circles ?? string.Empty;
+            InputMaxRadius.Text = appSsettings.MaxRadius ?? string.Empty;
+            InputIncrement.Text = appSsettings.Increment ?? string.Empty;
+            InputBaseAngle.Text = appSsettings.BaseAngle ?? string.Empty;
         }
     }
 
@@ -87,7 +65,7 @@ public partial class MainWindow : Window
     {
         base.OnClosing(e);
 
-        string json = JsonSerializer.Serialize(new AppSettings
+        var appSettings = new AppSettings
         {
             CenterX = InputCenterX.Text,
             CenterY = InputCenterY.Text,
@@ -95,9 +73,8 @@ public partial class MainWindow : Window
             MaxRadius = InputMaxRadius.Text,
             Increment = InputIncrement.Text,
             BaseAngle = InputBaseAngle.Text
-        }, new JsonSerializerOptions { WriteIndented = true });
-
-        File.WriteAllText(settingsPath, json, Encoding.UTF8);
+        };
+        appSettings.Save();
     }
 
     /// <summary>
