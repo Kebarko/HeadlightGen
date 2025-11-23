@@ -20,6 +20,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -67,21 +68,25 @@
             <TextBox Grid.Row="1" Grid.Column="1" Name="InputCenterY" />
             <Label Grid.Row="1" Grid.Column="2" Content="m" />
 
-            <Label Grid.Row="2" Grid.Column="0" Content="Number of circles" />
-            <TextBox Grid.Row="2" Grid.Column="1" Name="InputCircles" />
+            <Label Grid.Row="2" Grid.Column="0" Content="Center Z" />
+            <TextBox Grid.Row="2" Grid.Column="1" Name="InputCenterZ" />
+            <Label Grid.Row="2" Grid.Column="2" Content="m" />
 
-            <Label Grid.Row="3" Grid.Column="0" Content="Max. radius" />
-            <TextBox Grid.Row="3" Grid.Column="1" Name="InputMaxRadius" />
-            <Label Grid.Row="3" Grid.Column="2" Content="cm" />
+            <Label Grid.Row="3" Grid.Column="0" Content="Number of circles" />
+            <TextBox Grid.Row="3" Grid.Column="1" Name="InputCircles" />
 
-            <Label Grid.Row="4" Grid.Column="0" Content="Increment" />
-            <TextBox Grid.Row="4" Grid.Column="1" Name="InputIncrement" />
+            <Label Grid.Row="4" Grid.Column="0" Content="Max. radius" />
+            <TextBox Grid.Row="4" Grid.Column="1" Name="InputMaxRadius" />
+            <Label Grid.Row="4" Grid.Column="2" Content="cm" />
 
-            <Label Grid.Row="5" Grid.Column="0" Content="Base angle" />
-            <TextBox Grid.Row="5" Grid.Column="1" Name="InputBaseAngle" />
-            <Label Grid.Row="5" Grid.Column="2" Content="°" />
+            <Label Grid.Row="5" Grid.Column="0" Content="Increment" />
+            <TextBox Grid.Row="5" Grid.Column="1" Name="InputIncrement" />
 
-            <Button Grid.Row="6" Grid.Column="1" Content="Generate" Name="GenerateButton" />
+            <Label Grid.Row="6" Grid.Column="0" Content="Base angle" />
+            <TextBox Grid.Row="6" Grid.Column="1" Name="InputBaseAngle" />
+            <Label Grid.Row="6" Grid.Column="2" Content="°" />
+
+            <Button Grid.Row="7" Grid.Column="1" Content="Generate" Name="GenerateButton" />
         </Grid>
         <Canvas Grid.Row="0" Grid.Column="1" Name="TbCanvas" Margin="50" />
     </Grid>

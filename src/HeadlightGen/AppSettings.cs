@@ -28,6 +28,11 @@ public class AppSettings
     public string? CenterY { get; set; }
 
     /// <summary>
+    /// Gets or sets the Z coordinate of the light center point.
+    /// </summary>
+    public string? CenterZ { get; set; }
+
+    /// <summary>
     /// Gets or sets the number of concentric circles to generate.
     /// </summary>
     public string? Circles { get; set; }

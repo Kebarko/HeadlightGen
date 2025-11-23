@@ -28,6 +28,7 @@ public partial class MainWindow : Window
         Loaded += (_, _) => Redraw();
         InputCenterX.TextChanged += (_, _) => Redraw();
         InputCenterY.TextChanged += (_, _) => Redraw();
+        InputCenterZ.TextChanged += (_, _) => Redraw();
         InputCircles.TextChanged += (_, _) => Redraw();
         InputMaxRadius.TextChanged += (_, _) => Redraw();
         InputIncrement.TextChanged += (_, _) => Redraw();
@@ -50,6 +51,7 @@ public partial class MainWindow : Window
         {
             InputCenterX.Text = appSsettings.CenterX ?? string.Empty;
             InputCenterY.Text = appSsettings.CenterY ?? string.Empty;
+            InputCenterZ.Text = appSsettings.CenterZ ?? string.Empty;
             InputCircles.Text = appSsettings.Circles ?? string.Empty;
             InputMaxRadius.Text = appSsettings.MaxRadius ?? string.Empty;
             InputIncrement.Text = appSsettings.Increment ?? string.Empty;
@@ -69,6 +71,7 @@ public partial class MainWindow : Window
         {
             CenterX = InputCenterX.Text,
             CenterY = InputCenterY.Text,
+            CenterZ = InputCenterZ.Text,
             Circles = InputCircles.Text,
             MaxRadius = InputMaxRadius.Text,
             Increment = InputIncrement.Text,
@@ -87,6 +90,7 @@ public partial class MainWindow : Window
 
         if (!float.TryParse(InputCenterX.Text, NumberFormatInfo.InvariantInfo, out float centerX)) return;
         if (!float.TryParse(InputCenterY.Text, NumberFormatInfo.InvariantInfo, out float centerY)) return;
+        if (!float.TryParse(InputCenterZ.Text, NumberFormatInfo.InvariantInfo, out float _)) return;
         if (!int.TryParse(InputCircles.Text, out int circles) && circles <= 0) return;
         if (!float.TryParse(InputMaxRadius.Text, NumberFormatInfo.InvariantInfo, out float maxRadius) && maxRadius <= 0) return;
         if (!int.TryParse(InputIncrement.Text, out int increment) && increment <= 0) return;
@@ -133,6 +137,7 @@ public partial class MainWindow : Window
     {
         if (!float.TryParse(InputCenterX.Text, NumberFormatInfo.InvariantInfo, out float centerX)) return;
         if (!float.TryParse(InputCenterY.Text, NumberFormatInfo.InvariantInfo, out float centerY)) return;
+        if (!float.TryParse(InputCenterZ.Text, NumberFormatInfo.InvariantInfo, out float centerZ)) return;
         if (!int.TryParse(InputCircles.Text, out int circles) && circles <= 0) return;
         if (!float.TryParse(InputMaxRadius.Text, NumberFormatInfo.InvariantInfo, out float maxRadius) && maxRadius <= 0) return;
         if (!int.TryParse(InputIncrement.Text, out int increment) && increment <= 0) return;
@@ -158,7 +163,7 @@ public partial class MainWindow : Window
             return;
 
         var exporter = new Exporter();
-        exporter.Export(centerX, centerY, circles, maxRadius, increment, baseAngle, openFileDialog.FileName, saveFileDialog.FileName);
+        exporter.Export(centerX, centerY, centerZ, circles, maxRadius, increment, baseAngle, openFileDialog.FileName, saveFileDialog.FileName);
 
         MessageBox.Show("Light file generated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
     }

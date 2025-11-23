@@ -16,13 +16,14 @@ public class Exporter
     /// </summary>
     /// <param name="centerX">The X coordinate of the light center point.</param>
     /// <param name="centerY">The Y coordinate of the light center point.</param>
+    /// <param name="centerZ">The Z coordinate of the light center point.</param>
     /// <param name="circles">The number of concentric circles to export.</param>
     /// <param name="maxRadius">The maximum radius as a percentage.</param>
     /// <param name="increment">The base increment value for segment calculation.</param>
     /// <param name="baseAngle">The starting angle in degrees for segment orientation.</param>
     /// <param name="templatePath">The path to the template file containing {X} and {Y} placeholders.</param>
     /// <param name="outputPath">The path where the generated output file will be written.</param>
-    public void Export(float centerX, float centerY, int circles, float maxRadius, int increment, int baseAngle, string templatePath, string outputPath)
+    public void Export(float centerX, float centerY, float centerZ, int circles, float maxRadius, int increment, int baseAngle, string templatePath, string outputPath)
     {
         // Calculate points
         var segmentCalculator = new SegmentCalculator();
@@ -42,7 +43,8 @@ public class Exporter
         {
             result.AppendLine(template
                 .Replace("{X}", point.X.ToString("G", NumberFormatInfo.InvariantInfo))
-                .Replace("{Y}", point.Y.ToString("G", NumberFormatInfo.InvariantInfo)));
+                .Replace("{Y}", point.Y.ToString("G", NumberFormatInfo.InvariantInfo))
+                .Replace("{Z}", centerZ.ToString("G", NumberFormatInfo.InvariantInfo)));
         }
 
         result.AppendLine(")");
