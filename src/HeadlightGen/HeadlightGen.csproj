@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
     <RootNamespace>KE.MSTS.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <AssemblyVersion>1.0.*</AssemblyVersion>
   </PropertyGroup>
@@ -21,5 +22,9 @@
     <GenerateAssemblyFileVersionAttribute>False</GenerateAssemblyFileVersionAttribute>
     <GenerateAssemblyInformationalVersionAttribute>False</GenerateAssemblyInformationalVersionAttribute>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
 
 </Project>
