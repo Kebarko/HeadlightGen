@@ -48,6 +48,11 @@
                     <Setter Property="BorderBrush" Value="#C8C8C8" />
                     <Setter Property="Background" Value="White" />
                     <Setter Property="SnapsToDevicePixels" Value="True" />
+                    <Style.Triggers>
+                        <Trigger Property="IsReadOnly" Value="True">
+                            <Setter Property="Background" Value="#E8E8E8" />
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
                 <Style TargetType="Button">
                     <Setter Property="Margin" Value="10,6,1,6" />
@@ -88,7 +93,7 @@
             <Label Grid.Row="6" Grid.Column="2" Content="°" />
 
             <Label Grid.Row="7" Grid.Column="0" Content="Total segments" />
-            <TextBox Grid.Row="7" Grid.Column="1" Name="InputTotalSegments" IsReadOnly="True" />
+            <TextBox Grid.Row="7" Grid.Column="1" Name="InputTotalSegments" IsReadOnly="True" Focusable="False" />
 
             <Button Grid.Row="8" Grid.Column="1" Content="Generate" Name="GenerateButton" />
         </Grid>
