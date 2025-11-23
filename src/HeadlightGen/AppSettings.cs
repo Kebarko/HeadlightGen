@@ -18,6 +18,11 @@ public class AppSettings
     private static readonly string settingsPath = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
 
     /// <summary>
+    /// Gets or sets the title to add to the output.
+    /// </summary>
+    public string? Title { get; set; }
+
+    /// <summary>
     /// Gets or sets the X coordinate of the light center point.
     /// </summary>
     public string? CenterX { get; set; }

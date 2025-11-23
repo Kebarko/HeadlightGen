@@ -22,6 +22,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -66,36 +67,39 @@
                 </Style>
             </Grid.Resources>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Center X" ToolTip="The X coordinate of the light center point." />
-            <TextBox Grid.Row="0" Grid.Column="1" Name="InputCenterX" />
-            <Label Grid.Row="0" Grid.Column="2" Content="m" />
+            <Label Grid.Row="0" Grid.Column="0" Content="Title" ToolTip="The " />
+            <TextBox Grid.Row="0" Grid.Column="1" Name="InputTitle" />
 
-            <Label Grid.Row="1" Grid.Column="0" Content="Center Y" ToolTip="The Y coordinate of the light center point." />
-            <TextBox Grid.Row="1" Grid.Column="1" Name="InputCenterY" />
+            <Label Grid.Row="1" Grid.Column="0" Content="Center X" ToolTip="The X coordinate of the light center point." />
+            <TextBox Grid.Row="1" Grid.Column="1" Name="InputCenterX" />
             <Label Grid.Row="1" Grid.Column="2" Content="m" />
 
-            <Label Grid.Row="2" Grid.Column="0" Content="Center Z" ToolTip="The Z coordinate of the light center point." />
-            <TextBox Grid.Row="2" Grid.Column="1" Name="InputCenterZ" />
+            <Label Grid.Row="2" Grid.Column="0" Content="Center Y" ToolTip="The Y coordinate of the light center point." />
+            <TextBox Grid.Row="2" Grid.Column="1" Name="InputCenterY" />
             <Label Grid.Row="2" Grid.Column="2" Content="m" />
 
-            <Label Grid.Row="3" Grid.Column="0" Content="Number of circles" ToolTip="The number of concentric circles to generate." />
-            <TextBox Grid.Row="3" Grid.Column="1" Name="InputCircles" />
+            <Label Grid.Row="3" Grid.Column="0" Content="Center Z" ToolTip="The Z coordinate of the light center point." />
+            <TextBox Grid.Row="3" Grid.Column="1" Name="InputCenterZ" />
+            <Label Grid.Row="3" Grid.Column="2" Content="m" />
 
-            <Label Grid.Row="4" Grid.Column="0" Content="Max. radius" ToolTip="The maximum radius for the outermost circle." />
-            <TextBox Grid.Row="4" Grid.Column="1" Name="InputMaxRadius" />
-            <Label Grid.Row="4" Grid.Column="2" Content="cm" />
+            <Label Grid.Row="4" Grid.Column="0" Content="Number of circles" ToolTip="The number of concentric circles to generate." />
+            <TextBox Grid.Row="4" Grid.Column="1" Name="InputCircles" />
 
-            <Label Grid.Row="5" Grid.Column="0" Content="Increment" ToolTip="The increment value determining the number of segments per circle." />
-            <TextBox Grid.Row="5" Grid.Column="1" Name="InputIncrement" />
+            <Label Grid.Row="5" Grid.Column="0" Content="Max. radius" ToolTip="The maximum radius for the outermost circle." />
+            <TextBox Grid.Row="5" Grid.Column="1" Name="InputMaxRadius" />
+            <Label Grid.Row="5" Grid.Column="2" Content="cm" />
 
-            <Label Grid.Row="6" Grid.Column="0" Content="Base angle" ToolTip="The base angle in degrees for the initial segment orientation." />
-            <TextBox Grid.Row="6" Grid.Column="1" Name="InputBaseAngle" />
-            <Label Grid.Row="6" Grid.Column="2" Content="°" />
+            <Label Grid.Row="6" Grid.Column="0" Content="Increment" ToolTip="The increment value determining the number of segments per circle." />
+            <TextBox Grid.Row="6" Grid.Column="1" Name="InputIncrement" />
 
-            <Label Grid.Row="7" Grid.Column="0" Content="Total segments" ToolTip="The total number of segments calculated from the current settings." />
-            <TextBox Grid.Row="7" Grid.Column="1" Name="InputTotalSegments" IsReadOnly="True" Focusable="False" />
+            <Label Grid.Row="7" Grid.Column="0" Content="Base angle" ToolTip="The base angle in degrees for the initial segment orientation." />
+            <TextBox Grid.Row="7" Grid.Column="1" Name="InputBaseAngle" />
+            <Label Grid.Row="7" Grid.Column="2" Content="°" />
 
-            <Button Grid.Row="8" Grid.Column="1" Content="Generate" Name="GenerateButton" />
+            <Label Grid.Row="8" Grid.Column="0" Content="Total segments" ToolTip="The total number of segments calculated from the current settings." />
+            <TextBox Grid.Row="8" Grid.Column="1" Name="InputTotalSegments" IsReadOnly="True" Focusable="False" />
+
+            <Button Grid.Row="9" Grid.Column="1" Content="Generate" Name="GenerateButton" />
         </Grid>
         <Canvas Grid.Row="0" Grid.Column="1" Name="TbCanvas" Margin="50" />
     </Grid>

@@ -49,6 +49,7 @@ public partial class MainWindow : Window
         var appSsettings = AppSettings.Load();
         if (appSsettings != null)
         {
+            InputTitle.Text = appSsettings.Title ?? string.Empty;
             InputCenterX.Text = appSsettings.CenterX ?? string.Empty;
             InputCenterY.Text = appSsettings.CenterY ?? string.Empty;
             InputCenterZ.Text = appSsettings.CenterZ ?? string.Empty;
@@ -69,6 +70,7 @@ public partial class MainWindow : Window
 
         var appSettings = new AppSettings
         {
+            Title = InputTitle.Text,
             CenterX = InputCenterX.Text,
             CenterY = InputCenterY.Text,
             CenterZ = InputCenterZ.Text,
@@ -165,7 +167,7 @@ public partial class MainWindow : Window
             return;
 
         var exporter = new Exporter();
-        exporter.Export(centerX, centerY, centerZ, circles, maxRadius, increment, baseAngle, openFileDialog.FileName, saveFileDialog.FileName);
+        exporter.Export(InputTitle.Text, centerX, centerY, centerZ, circles, maxRadius, increment, baseAngle, openFileDialog.FileName, saveFileDialog.FileName);
 
         MessageBox.Show("Light file generated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
     }

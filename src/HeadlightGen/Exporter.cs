@@ -14,6 +14,7 @@ public class Exporter
     /// <summary>
     /// Exports light points to a file by replacing placeholders in a template.
     /// </summary>
+    /// <param name="title">The title comment to add to the output.</param>
     /// <param name="centerX">The X coordinate of the light center point.</param>
     /// <param name="centerY">The Y coordinate of the light center point.</param>
     /// <param name="centerZ">The Z coordinate of the light center point.</param>
@@ -23,7 +24,7 @@ public class Exporter
     /// <param name="baseAngle">The starting angle in degrees for segment orientation.</param>
     /// <param name="templatePath">The path to the template file containing {X} and {Y} placeholders.</param>
     /// <param name="outputPath">The path where the generated output file will be written.</param>
-    public void Export(float centerX, float centerY, float centerZ, int circles, float maxRadius, int increment, int baseAngle, string templatePath, string outputPath)
+    public void Export(string title, float centerX, float centerY, float centerZ, int circles, float maxRadius, int increment, int baseAngle, string templatePath, string outputPath)
     {
         // Calculate points
         var segmentCalculator = new SegmentCalculator();
@@ -34,6 +35,9 @@ public class Exporter
 
         // Create string builder for output
         StringBuilder result = new StringBuilder();
+
+        // Add title comment
+        result.AppendLine($"comment ( {title} )");
 
         // Iterate over points and replace placeholders in template
         foreach (var point in points)
