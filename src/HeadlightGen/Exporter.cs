@@ -35,9 +35,6 @@ public class Exporter
         // Create string builder for output
         StringBuilder result = new StringBuilder();
 
-        result.AppendLine();
-        result.AppendLine($"Lights ( {points.Count}");
-
         // Iterate over points and replace placeholders in template
         foreach (var point in points)
         {
@@ -46,8 +43,6 @@ public class Exporter
                 .Replace("{Y}", point.Y.ToString("G", NumberFormatInfo.InvariantInfo))
                 .Replace("{Z}", centerZ.ToString("G", NumberFormatInfo.InvariantInfo)));
         }
-
-        result.AppendLine(")");
 
         // Write output to file
         File.WriteAllText(outputPath, result.ToString(), Encoding.Unicode);

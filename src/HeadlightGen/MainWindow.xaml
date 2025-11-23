@@ -21,6 +21,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -86,7 +87,10 @@
             <TextBox Grid.Row="6" Grid.Column="1" Name="InputBaseAngle" />
             <Label Grid.Row="6" Grid.Column="2" Content="°" />
 
-            <Button Grid.Row="7" Grid.Column="1" Content="Generate" Name="GenerateButton" />
+            <Label Grid.Row="7" Grid.Column="0" Content="Total segments" />
+            <TextBox Grid.Row="7" Grid.Column="1" Name="InputTotalSegments" IsReadOnly="True" />
+
+            <Button Grid.Row="8" Grid.Column="1" Content="Generate" Name="GenerateButton" />
         </Grid>
         <Canvas Grid.Row="0" Grid.Column="1" Name="TbCanvas" Margin="50" />
     </Grid>

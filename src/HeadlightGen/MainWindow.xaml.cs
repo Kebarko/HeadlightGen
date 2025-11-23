@@ -91,13 +91,15 @@ public partial class MainWindow : Window
         if (!float.TryParse(InputCenterX.Text, NumberFormatInfo.InvariantInfo, out float centerX)) return;
         if (!float.TryParse(InputCenterY.Text, NumberFormatInfo.InvariantInfo, out float centerY)) return;
         if (!float.TryParse(InputCenterZ.Text, NumberFormatInfo.InvariantInfo, out float _)) return;
-        if (!int.TryParse(InputCircles.Text, out int circles) && circles <= 0) return;
-        if (!float.TryParse(InputMaxRadius.Text, NumberFormatInfo.InvariantInfo, out float maxRadius) && maxRadius <= 0) return;
-        if (!int.TryParse(InputIncrement.Text, out int increment) && increment <= 0) return;
-        if (!int.TryParse(InputBaseAngle.Text, out int baseAngle) && baseAngle <= 0) return;
+        if (!int.TryParse(InputCircles.Text, out int circles) && circles < 0) return;
+        if (!float.TryParse(InputMaxRadius.Text, NumberFormatInfo.InvariantInfo, out float maxRadius) && maxRadius < 0) return;
+        if (!int.TryParse(InputIncrement.Text, out int increment) && increment < 0) return;
+        if (!int.TryParse(InputBaseAngle.Text, out int baseAngle) && baseAngle < 0) return;
 
         var renderer = new Renderer();
         renderer.Render(TbCanvas, centerX, centerY, circles, maxRadius, increment, baseAngle);
+
+        InputTotalSegments.Text = (1 + increment * circles * (circles + 1) / 2).ToString();
     }
     
     /// <summary>
@@ -138,10 +140,10 @@ public partial class MainWindow : Window
         if (!float.TryParse(InputCenterX.Text, NumberFormatInfo.InvariantInfo, out float centerX)) return;
         if (!float.TryParse(InputCenterY.Text, NumberFormatInfo.InvariantInfo, out float centerY)) return;
         if (!float.TryParse(InputCenterZ.Text, NumberFormatInfo.InvariantInfo, out float centerZ)) return;
-        if (!int.TryParse(InputCircles.Text, out int circles) && circles <= 0) return;
-        if (!float.TryParse(InputMaxRadius.Text, NumberFormatInfo.InvariantInfo, out float maxRadius) && maxRadius <= 0) return;
-        if (!int.TryParse(InputIncrement.Text, out int increment) && increment <= 0) return;
-        if (!int.TryParse(InputBaseAngle.Text, out int baseAngle) && baseAngle <= 0) return;
+        if (!int.TryParse(InputCircles.Text, out int circles) && circles < 0) return;
+        if (!float.TryParse(InputMaxRadius.Text, NumberFormatInfo.InvariantInfo, out float maxRadius) && maxRadius < 0) return;
+        if (!int.TryParse(InputIncrement.Text, out int increment) && increment < 0) return;
+        if (!int.TryParse(InputBaseAngle.Text, out int baseAngle) && baseAngle < 0) return;
 
         var openFileDialog = new OpenFileDialog()
         {
