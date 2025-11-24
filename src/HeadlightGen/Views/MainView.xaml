@@ -1,8 +1,12 @@
-﻿<Window x:Class="KE.MSTS.HeadlightGen.MainWindow"
+﻿<Window x:Class="KE.MSTS.HeadlightGen.Views.MainView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="HeadlightGen" Width="800" Height="600"
+        xmlns:vm="clr-namespace:KE.MSTS.HeadlightGen.ViewModels"
+        Title="HeadlightGen" MinWidth="800" MinHeight="600" Width="800" Height="600"
         WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -68,40 +72,66 @@
             </Grid.Resources>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Title" />
-            <TextBox Grid.Row="0" Grid.Column="1" Name="InputTitle" ToolTip="The title to add to the output" />
+            <TextBox Grid.Row="0" Grid.Column="1" ToolTip="The title to add to the output"
+                     Text="{Binding Path=Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <Label Grid.Row="1" Grid.Column="0" Content="Center X" />
-            <TextBox Grid.Row="1" Grid.Column="1" Name="InputCenterX" ToolTip="The X coordinate of the light center point." />
+            <TextBox Grid.Row="1" Grid.Column="1" ToolTip="The X coordinate of the light center point."
+                     Text="{Binding Path=CenterX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label Grid.Row="1" Grid.Column="2" Content="m" />
 
             <Label Grid.Row="2" Grid.Column="0" Content="Center Y" />
-            <TextBox Grid.Row="2" Grid.Column="1" Name="InputCenterY" ToolTip="The Y coordinate of the light center point." />
+            <TextBox Grid.Row="2" Grid.Column="1" ToolTip="The Y coordinate of the light center point."
+                     Text="{Binding Path=CenterY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label Grid.Row="2" Grid.Column="2" Content="m" />
 
             <Label Grid.Row="3" Grid.Column="0" Content="Center Z" />
-            <TextBox Grid.Row="3" Grid.Column="1" Name="InputCenterZ" ToolTip="The Z coordinate of the light center point." />
+            <TextBox Grid.Row="3" Grid.Column="1" ToolTip="The Z coordinate of the light center point."
+                     Text="{Binding Path=CenterZ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label Grid.Row="3" Grid.Column="2" Content="m" />
 
             <Label Grid.Row="4" Grid.Column="0" Content="Number of circles" />
-            <TextBox Grid.Row="4" Grid.Column="1" Name="InputCircles" ToolTip="The number of concentric circles to generate." />
+            <TextBox Grid.Row="4" Grid.Column="1" ToolTip="The number of concentric circles to generate."
+                     Text="{Binding Path=Circles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <Label Grid.Row="5" Grid.Column="0" Content="Max. radius" />
-            <TextBox Grid.Row="5" Grid.Column="1" Name="InputMaxRadius" ToolTip="The maximum radius for the outermost circle." />
+            <TextBox Grid.Row="5" Grid.Column="1" ToolTip="The maximum radius for the outermost circle."
+                     Text="{Binding Path=MaxRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label Grid.Row="5" Grid.Column="2" Content="cm" />
 
             <Label Grid.Row="6" Grid.Column="0" Content="Increment" />
-            <TextBox Grid.Row="6" Grid.Column="1" Name="InputIncrement" ToolTip="The increment value determining the number of segments per circle." />
+            <TextBox Grid.Row="6" Grid.Column="1"
+                     ToolTip="The increment value determining the number of segments per circle."
+                     Text="{Binding Path=Increment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <Label Grid.Row="7" Grid.Column="0" Content="Base angle" />
-            <TextBox Grid.Row="7" Grid.Column="1" Name="InputBaseAngle" ToolTip="The base angle in degrees for the initial segment orientation." />
+            <TextBox Grid.Row="7" Grid.Column="1"
+                     ToolTip="The base angle in degrees for the initial segment orientation."
+                     Text="{Binding Path=BaseAngle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label Grid.Row="7" Grid.Column="2" Content="°" />
 
             <Label Grid.Row="8" Grid.Column="0" Content="Total segments" />
-            <TextBox Grid.Row="8" Grid.Column="1" Name="InputTotalSegments" IsReadOnly="True" Focusable="False" ToolTip="The total number of segments calculated from the current settings." />
+            <TextBox Grid.Row="8" Grid.Column="1" IsReadOnly="True" Focusable="False"
+                     ToolTip="The total number of segments calculated from the current settings."
+                     Text="{Binding Path=TotalSegments, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Button Grid.Row="9" Grid.Column="1" Content="Generate" Name="GenerateButton" />
+            <Button Grid.Row="9" Grid.Column="1" Content="Generate" Command="{Binding GenerateCommand}" />
         </Grid>
-        <Canvas Grid.Row="0" Grid.Column="1" Name="TbCanvas" Margin="50" />
+        <Canvas x:Name="MainCanvas" Grid.Row="0" Grid.Column="1" Margin="50" Loaded="CanvasLoaded" SizeChanged="CanvasSizeChanged">
+            <ItemsControl  ItemsSource="{Binding Shapes}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="FrameworkElement">
+                        <Setter Property="Canvas.Left" Value="{Binding X}" />
+                        <Setter Property="Canvas.Top" Value="{Binding Y}" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+            </ItemsControl>
+        </Canvas>
     </Grid>
 </Window>
-

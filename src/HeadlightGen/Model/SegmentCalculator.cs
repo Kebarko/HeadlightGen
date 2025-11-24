@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace KE.MSTS.HeadlightGen;
+namespace KE.MSTS.HeadlightGen.Model;
 
 /// <summary>
 /// Calculates points arranged in concentric circles with configurable segments.
@@ -13,16 +13,18 @@ public class SegmentCalculator
     /// </summary>
     /// <param name="center">The center point of the circle arrangement.</param>
     /// <param name="circles">The number of concentric circles to generate.</param>
-    /// <param name="maxRadius">The maximum radius of the outermost circle as a percentage.</param>
+    /// <param name="maxRadius">The maximum radius of the outermost circle</param>
     /// <param name="increment">The number of segments for the first circle; scales up for outer circles.</param>
     /// <param name="baseAngle">The starting angle in degrees for the first segment.</param>
+    /// <param name="boundingBox">The bounding rectangle that encloses all generated points.</param>
     /// <returns>A list of points representing the calculated circle segments, starting with the center point.</returns>
-    public IList<PointF> Calculate(PointF center, int circles, float maxRadius, int increment, int baseAngle)
+    public static IList<PointF> Calculate(PointF center, int circles, float maxRadius, int increment, int baseAngle, out RectangleF boundingBox)
     {
         var result = new List<PointF>();
         
         if (circles <= 0 || maxRadius <= 0 || increment <= 0)
         {
+            boundingBox = new RectangleF();
             return result;
         }
         
@@ -30,7 +32,7 @@ public class SegmentCalculator
 
         for (int circle = 1; circle <= circles; circle++)
         {
-            float radius = maxRadius / 100 / circles * circle;
+            float radius = maxRadius / circles * circle;
             int segments = increment * circle;
 
             for (int seg = 0; seg < segments; seg++)
@@ -41,6 +43,14 @@ public class SegmentCalculator
                 result.Add(new PointF(x, y));
             }
         }
+
+        boundingBox = new RectangleF
+        {
+            X = center.X - maxRadius,
+            Y = center.Y - maxRadius,
+            Width = 2 * maxRadius,
+            Height = 2 * maxRadius
+        };
         
         return result;
     }

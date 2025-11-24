@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace KE.MSTS.HeadlightGen;
+namespace KE.MSTS.HeadlightGen.Services;
 
 /// <summary>
 /// Configuration settings for the HeadlightGen application.
@@ -25,37 +25,37 @@ public class AppSettings
     /// <summary>
     /// Gets or sets the X coordinate of the light center point.
     /// </summary>
-    public string? CenterX { get; set; }
+    public float? CenterX { get; set; }
 
     /// <summary>
     /// Gets or sets the Y coordinate of the light center point.
     /// </summary>
-    public string? CenterY { get; set; }
+    public float? CenterY { get; set; }
 
     /// <summary>
     /// Gets or sets the Z coordinate of the light center point.
     /// </summary>
-    public string? CenterZ { get; set; }
+    public float? CenterZ { get; set; }
 
     /// <summary>
     /// Gets or sets the number of concentric circles to generate.
     /// </summary>
-    public string? Circles { get; set; }
+    public int? Circles { get; set; }
 
     /// <summary>
     /// Gets or sets the maximum radius for the outermost circle.
     /// </summary>
-    public string? MaxRadius { get; set; }
+    public float? MaxRadius { get; set; }
 
     /// <summary>
     /// Gets or sets the increment value determining the number of segments per circle.
     /// </summary>
-    public string? Increment { get; set; }
+    public int? Increment { get; set; }
 
     /// <summary>
     /// Gets or sets the base angle in degrees for the initial segment orientation.
     /// </summary>
-    public string? BaseAngle { get; set; }
+    public int? BaseAngle { get; set; }
 
     /// <summary>
     /// Serializes the current <see cref="AppSettings"/> instance to JSON (pretty-printed) and writes it to the file specified by <c>settingsPath</c>.
