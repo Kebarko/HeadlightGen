@@ -46,5 +46,24 @@ namespace KE.MSTS.HeadlightGen.Views
             double increment = e.Key == Key.Up ? 1 : -1;
             textBox.Text = (value + increment).ToString(CultureInfo.InvariantCulture);
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (DataContext is ViewModels.MainViewModel mainViewModel)
+            {
+                var appSettings = new Services.AppSettings
+                {
+                    Title = mainViewModel.Title,
+                    CenterX = mainViewModel.CenterX,
+                    CenterY = mainViewModel.CenterY,
+                    CenterZ = mainViewModel.CenterZ,
+                    Circles = mainViewModel.Circles,
+                    MaxRadius = mainViewModel.MaxRadius,
+                    Increment = mainViewModel.Increment,
+                    Rotation = mainViewModel.Rotation
+                };
+                appSettings.Save();
+            }
+        }
     }
 }
