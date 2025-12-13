@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace KE.MSTS.HeadlightGen.Views
 {
@@ -25,6 +28,23 @@ namespace KE.MSTS.HeadlightGen.Views
                 vm.CanvasWidth = (int)MainCanvas.ActualWidth;
                 vm.CanvasHeight = (int)MainCanvas.ActualHeight;
             }
+        }
+
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (sender is not TextBox textBox)
+                return;
+
+            if (e.Key != Key.Up && e.Key != Key.Down)
+                return;
+
+            e.Handled = true;
+
+            if (!double.TryParse(textBox.Text, NumberFormatInfo.InvariantInfo, out double value))
+                return;
+
+            double increment = e.Key == Key.Up ? 1 : -1;
+            textBox.Text = (value + increment).ToString(CultureInfo.InvariantCulture);
         }
     }
 }
