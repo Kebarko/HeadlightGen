@@ -40,11 +40,11 @@ namespace KE.MSTS.HeadlightGen.Views
 
             e.Handled = true;
 
-            if (!double.TryParse(textBox.Text, NumberFormatInfo.InvariantInfo, out double value))
+            if (!int.TryParse(textBox.Text, out int value))
                 return;
 
-            double increment = e.Key == Key.Up ? 1 : -1;
-            textBox.Text = (value + increment).ToString(CultureInfo.InvariantCulture);
+            int increment = e.Key == Key.Up ? 1 : -1;
+            textBox.Text = (value + increment).ToString();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
