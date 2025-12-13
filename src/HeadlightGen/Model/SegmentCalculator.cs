@@ -41,7 +41,7 @@ public class SegmentCalculator
                 float angle = (float)(rotation * Math.PI / 180 + 2.0 * Math.PI * seg / segments);
                 float x = (float)Math.Round(center.X + radius * (float)Math.Cos(angle), 3, MidpointRounding.AwayFromZero);
                 float y = (float)Math.Round(center.Y + radius * (float)Math.Sin(angle), 3, MidpointRounding.AwayFromZero);
-                float z = (float)Math.Round(center.Z + (center.Y - y) * Math.Tan(elevation), 3, MidpointRounding.AwayFromZero);
+                float z = (float)Math.Round(center.Z + (center.Y - y) * Math.Tan(elevation * Math.PI / 180), 3, MidpointRounding.AwayFromZero);
                 result.Add(new Point3D(x, y, z));
             }
         }
