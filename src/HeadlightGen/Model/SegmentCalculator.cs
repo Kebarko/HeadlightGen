@@ -16,11 +16,12 @@ public class SegmentCalculator
     /// <param name="maxRadius">The maximum radius of the outermost circle</param>
     /// <param name="increment">The number of segments for the first circle; scales up for outer circles.</param>
     /// <param name="rotation">The starting angle in degrees for the first segment.</param>
+    /// <param name="elevation">The elevation value to be applied to all light points.</param>
     /// <param name="boundingBox">The bounding rectangle that encloses all generated points.</param>
     /// <returns>A list of points representing the calculated circle segments, starting with the center point.</returns>
-    public static IList<PointF> Calculate(PointF center, int circles, float maxRadius, int increment, int rotation, out RectangleF boundingBox)
+    public static IList<Point3D> Calculate(Point3D center, int circles, float maxRadius, int increment, int rotation, int elevation, out RectangleF boundingBox)
     {
-        var result = new List<PointF>();
+        var result = new List<Point3D>();
         
         if (circles <= 0 || maxRadius <= 0 || increment <= 0)
         {
@@ -40,7 +41,8 @@ public class SegmentCalculator
                 float angle = (float)(rotation * Math.PI / 180 + 2.0 * Math.PI * seg / segments);
                 float x = (float)Math.Round(center.X + radius * (float)Math.Cos(angle), 3, MidpointRounding.AwayFromZero);
                 float y = (float)Math.Round(center.Y + radius * (float)Math.Sin(angle), 3, MidpointRounding.AwayFromZero);
-                result.Add(new PointF(x, y));
+                float z = (float)Math.Round(center.Z + (center.Y - y) * Math.Tan(elevation), 3, MidpointRounding.AwayFromZero);
+                result.Add(new Point3D(x, y, z));
             }
         }
 

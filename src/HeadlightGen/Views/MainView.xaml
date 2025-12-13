@@ -28,6 +28,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -114,12 +115,19 @@
                      PreviewKeyDown="TextBox_PreviewKeyDown" />
             <Label Grid.Row="7" Grid.Column="2" Content="°" />
 
-            <Label Grid.Row="8" Grid.Column="0" Content="Total segments" />
-            <TextBox Grid.Row="8" Grid.Column="1" IsReadOnly="True" Focusable="False"
+            <Label Grid.Row="8" Grid.Column="0" Content="Elevation" />
+            <TextBox Grid.Row="8" Grid.Column="1"
+                     ToolTip="The elevation in degrees for all light points."
+                     Text="{Binding Path=Elevation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     PreviewKeyDown="TextBox_PreviewKeyDown" />
+            <Label Grid.Row="8" Grid.Column="2" Content="°" />
+
+            <Label Grid.Row="9" Grid.Column="0" Content="Total segments" />
+            <TextBox Grid.Row="9" Grid.Column="1" IsReadOnly="True" Focusable="False"
                      ToolTip="The total number of segments calculated from the current settings."
                      Text="{Binding Path=TotalSegments, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Button Grid.Row="9" Grid.Column="1" Content="Generate" Command="{Binding GenerateCommand}" />
+            <Button Grid.Row="10" Grid.Column="1" Content="Generate" Command="{Binding GenerateCommand}" />
         </Grid>
         <Canvas x:Name="MainCanvas" Grid.Row="0" Grid.Column="1" Margin="50" Loaded="CanvasLoaded" SizeChanged="CanvasSizeChanged">
             <ItemsControl  ItemsSource="{Binding Shapes}">
