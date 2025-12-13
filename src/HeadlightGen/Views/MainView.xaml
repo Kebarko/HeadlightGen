@@ -107,10 +107,10 @@
                      Text="{Binding Path=Increment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                      PreviewKeyDown="TextBox_PreviewKeyDown" />
 
-            <Label Grid.Row="7" Grid.Column="0" Content="Base angle" />
+            <Label Grid.Row="7" Grid.Column="0" Content="Rotation" />
             <TextBox Grid.Row="7" Grid.Column="1"
-                     ToolTip="The base angle in degrees for the initial segment orientation."
-                     Text="{Binding Path=BaseAngle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     ToolTip="The rotation in degrees for the initial segment orientation."
+                     Text="{Binding Path=Rotation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                      PreviewKeyDown="TextBox_PreviewKeyDown" />
             <Label Grid.Row="7" Grid.Column="2" Content="°" />
 

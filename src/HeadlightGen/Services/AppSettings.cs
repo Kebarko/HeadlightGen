@@ -53,9 +53,9 @@ public class AppSettings
     public int? Increment { get; set; }
 
     /// <summary>
-    /// Gets or sets the base angle in degrees for the initial segment orientation.
+    /// Gets or sets the rotation in degrees for the initial segment orientation.
     /// </summary>
-    public int? BaseAngle { get; set; }
+    public int? Rotation { get; set; }
 
     /// <summary>
     /// Serializes the current <see cref="AppSettings"/> instance to JSON (pretty-printed) and writes it to the file specified by <c>settingsPath</c>.

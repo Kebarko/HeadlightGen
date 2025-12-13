@@ -19,7 +19,7 @@ namespace KE.MSTS.HeadlightGen.ViewModels
         private int? circles;
         private float? maxRadius;
         private int? increment;
-        private int? baseAngle;
+        private int? rotation;
         private int? totalSegments;
         private int? canvasWidth;
         private int? canvasHeight;
@@ -108,14 +108,14 @@ namespace KE.MSTS.HeadlightGen.ViewModels
             }
         }
 
-        public int? BaseAngle
+        public int? Rotation
         {
-            get => baseAngle;
+            get => rotation;
             set
             {
-                if (Nullable.Equals(value, baseAngle)) return;
-                baseAngle = value;
-                OnPropertyChanged(nameof(BaseAngle));
+                if (Nullable.Equals(value, rotation)) return;
+                rotation = value;
+                OnPropertyChanged(nameof(Rotation));
                 Redraw();
             }
         }
@@ -174,18 +174,18 @@ namespace KE.MSTS.HeadlightGen.ViewModels
                 Circles = appSettings.Circles;
                 MaxRadius = appSettings.MaxRadius;
                 Increment = appSettings.Increment;
-                BaseAngle = appSettings.BaseAngle;
+                Rotation = appSettings.Rotation;
             }
         }
 
         private bool CanGenerate(object? obj)
         {
-            return CenterX.HasValue && CenterY.HasValue && CenterZ.HasValue && Circles.HasValue && MaxRadius.HasValue && Increment.HasValue && BaseAngle.HasValue;
+            return CenterX.HasValue && CenterY.HasValue && CenterZ.HasValue && Circles.HasValue && MaxRadius.HasValue && Increment.HasValue && Rotation.HasValue;
         }
 
         private void Generate(object? obj)
         {
-            IList<PointF> points = SegmentCalculator.Calculate(new PointF(CenterX!.Value, CenterY!.Value), Circles!.Value, MaxRadius!.Value / 100, Increment!.Value, BaseAngle!.Value, out _);
+            IList<PointF> points = SegmentCalculator.Calculate(new PointF(CenterX!.Value, CenterY!.Value), Circles!.Value, MaxRadius!.Value / 100, Increment!.Value, Rotation!.Value, out _);
             
             var openFileDialog = new OpenFileDialog()
             {
@@ -215,10 +215,10 @@ namespace KE.MSTS.HeadlightGen.ViewModels
         {
             Shapes.Clear();
 
-            if (CanvasWidth == null || CanvasHeight == null || CenterX == null || CenterY == null || Circles == null || MaxRadius == null || Increment == null || BaseAngle == null)
+            if (CanvasWidth == null || CanvasHeight == null || CenterX == null || CenterY == null || Circles == null || MaxRadius == null || Increment == null || Rotation == null)
                 return;
 
-            IList<PointF> points = SegmentCalculator.Calculate(new PointF(CenterX.Value, CenterY.Value), Circles.Value, MaxRadius.Value / 100, Increment.Value, BaseAngle.Value, out RectangleF boudingBox);
+            IList<PointF> points = SegmentCalculator.Calculate(new PointF(CenterX.Value, CenterY.Value), Circles.Value, MaxRadius.Value / 100, Increment.Value, Rotation.Value, out RectangleF boudingBox);
             
             TotalSegments = points.Count;
             
