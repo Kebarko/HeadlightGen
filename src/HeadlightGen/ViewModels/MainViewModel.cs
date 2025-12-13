@@ -20,6 +20,7 @@ namespace KE.MSTS.HeadlightGen.ViewModels
         private float? maxRadius;
         private int? increment;
         private int? rotation;
+        private int? elevation;
         private int? totalSegments;
         private int? canvasWidth;
         private int? canvasHeight;
@@ -120,6 +121,18 @@ namespace KE.MSTS.HeadlightGen.ViewModels
             }
         }
 
+        public int? Elevation
+        {
+            get => elevation;
+            set
+            {
+                if (Nullable.Equals(value, elevation)) return;
+                elevation = value;
+                OnPropertyChanged(nameof(Elevation));
+                Redraw();
+            }
+        }
+
         public int? TotalSegments
         {
             get => totalSegments;
@@ -175,17 +188,18 @@ namespace KE.MSTS.HeadlightGen.ViewModels
                 MaxRadius = appSettings.MaxRadius;
                 Increment = appSettings.Increment;
                 Rotation = appSettings.Rotation;
+                Elevation = appSettings.Elevation;
             }
         }
 
         private bool CanGenerate(object? obj)
         {
-            return CenterX.HasValue && CenterY.HasValue && CenterZ.HasValue && Circles.HasValue && MaxRadius.HasValue && Increment.HasValue && Rotation.HasValue;
+            return CenterX.HasValue && CenterY.HasValue && CenterZ.HasValue && Circles.HasValue && MaxRadius.HasValue && Increment.HasValue && Rotation.HasValue && Elevation.HasValue;
         }
 
         private void Generate(object? obj)
         {
-            IList<PointF> points = SegmentCalculator.Calculate(new PointF(CenterX!.Value, CenterY!.Value), Circles!.Value, MaxRadius!.Value / 100, Increment!.Value, Rotation!.Value, out _);
+            IList<Point3D> points = SegmentCalculator.Calculate(new Point3D(CenterX!.Value, CenterY!.Value, CenterZ!.Value), Circles!.Value, MaxRadius!.Value / 100, Increment!.Value, Rotation!.Value, Elevation!.Value, out _);
             
             var openFileDialog = new OpenFileDialog()
             {
@@ -206,7 +220,7 @@ namespace KE.MSTS.HeadlightGen.ViewModels
             if (saveFileDialog.ShowDialog() != true)
                 return;
 
-            Exporter.Export(Title, points, CenterZ!.Value, openFileDialog.FileName, saveFileDialog.FileName);
+            Exporter.Export(Title, points, Elevation!.Value, openFileDialog.FileName, saveFileDialog.FileName);
 
             MessageBox.Show("Light file generated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -215,10 +229,10 @@ namespace KE.MSTS.HeadlightGen.ViewModels
         {
             Shapes.Clear();
 
-            if (CanvasWidth == null || CanvasHeight == null || CenterX == null || CenterY == null || Circles == null || MaxRadius == null || Increment == null || Rotation == null)
+            if (CanvasWidth == null || CanvasHeight == null || CenterX == null || CenterY == null || CenterZ == null || Circles == null || MaxRadius == null || Increment == null || Rotation == null || Elevation == null)
                 return;
 
-            IList<PointF> points = SegmentCalculator.Calculate(new PointF(CenterX.Value, CenterY.Value), Circles.Value, MaxRadius.Value / 100, Increment.Value, Rotation.Value, out RectangleF boudingBox);
+            IList<Point3D> points = SegmentCalculator.Calculate(new Point3D(CenterX.Value, CenterY.Value, CenterZ.Value), Circles.Value, MaxRadius.Value / 100, Increment.Value, Rotation.Value, Elevation.Value, out RectangleF boudingBox);
             
             TotalSegments = points.Count;
             

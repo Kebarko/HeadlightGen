@@ -58,6 +58,11 @@ public class AppSettings
     public int? Rotation { get; set; }
 
     /// <summary>
+    /// Gets or sets the elevation in degrees for all light points.
+    /// </summary>
+    public int? Elevation { get; set; }
+
+    /// <summary>
     /// Serializes the current <see cref="AppSettings"/> instance to JSON (pretty-printed) and writes it to the file specified by <c>settingsPath</c>.
     /// </summary>
     public void Save()

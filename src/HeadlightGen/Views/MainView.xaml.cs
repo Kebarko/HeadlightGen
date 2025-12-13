@@ -60,7 +60,8 @@ namespace KE.MSTS.HeadlightGen.Views
                     Circles = mainViewModel.Circles,
                     MaxRadius = mainViewModel.MaxRadius,
                     Increment = mainViewModel.Increment,
-                    Rotation = mainViewModel.Rotation
+                    Rotation = mainViewModel.Rotation,
+                    Elevation = mainViewModel.Elevation
                 };
                 appSettings.Save();
             }

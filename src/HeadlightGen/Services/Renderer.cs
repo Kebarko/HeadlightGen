@@ -2,6 +2,7 @@ using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using KE.MSTS.HeadlightGen.Model;
 
 namespace KE.MSTS.HeadlightGen.Services;
 
@@ -19,7 +20,7 @@ public class Renderer
     /// <param name="pointsBoudingBox">The bounding box of the points to render in model coordinates.</param>
     /// <param name="points">The collection of points to render.</param>
     /// <returns>An enumerable collection of WPF Shape elements (Ellipse) ready to be added to the canvas.</returns>
-    public static IEnumerable<Shape> Render(int canvasWidth, int canvasHeight, RectangleF pointsBoudingBox, IList<PointF> points)
+    public static IEnumerable<Shape> Render(int canvasWidth, int canvasHeight, RectangleF pointsBoudingBox, IList<Point3D> points)
     {
         // Calculate scale to fit points within canvas
         float scaleX = canvasWidth / pointsBoudingBox.Width;
