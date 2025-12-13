@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Drawing;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shapes;
@@ -13,11 +14,11 @@ namespace KE.MSTS.HeadlightGen.ViewModels
     internal class MainViewModel : ViewModelBase
     {
         private string? title;
-        private float? centerX;
-        private float? centerZ;
-        private float? centerY;
+        private string? centerXStr;
+        private string? centerYStr;
+        private string? centerZStr;
         private int? circles;
-        private float? maxRadius;
+        private string? maxRadiusStr;
         private int? increment;
         private int? rotation;
         private int? elevation;
@@ -37,40 +38,58 @@ namespace KE.MSTS.HeadlightGen.ViewModels
             }
         }
 
-        public float? CenterX
+        public string? CenterXStr
         {
-            get => centerX;
+            get => centerXStr;
             set
             {
-                if (Nullable.Equals(value, centerX)) return;
-                centerX = value;
-                OnPropertyChanged(nameof(CenterX));
+                if (Nullable.Equals(value, centerXStr)) return;
+                centerXStr = value;
+                OnPropertyChanged(nameof(CenterXStr));
+                Redraw();
+            }
+        }
+
+        public float? CenterX
+        {
+            get => float.TryParse(CenterXStr, NumberFormatInfo.CurrentInfo, out float result) ? result : null;
+            set => CenterXStr = value?.ToString();
+        }
+
+        public string? CenterYStr
+        {
+            get => centerYStr;
+            set
+            {
+                if (Nullable.Equals(value, centerYStr)) return;
+                centerYStr = value;
+                OnPropertyChanged(nameof(CenterYStr));
                 Redraw();
             }
         }
 
         public float? CenterY
         {
-            get => centerY;
+            get => float.TryParse(CenterYStr, NumberFormatInfo.CurrentInfo, out float result) ? result : null;
+            set => CenterYStr = value?.ToString();
+        }
+
+        public string? CenterZStr
+        {
+            get => centerZStr;
             set
             {
-                if (Nullable.Equals(value, centerY)) return;
-                centerY = value;
-                OnPropertyChanged(nameof(CenterY));
+                if (Nullable.Equals(value, centerZStr)) return;
+                centerZStr = value;
+                OnPropertyChanged(nameof(CenterZStr));
                 Redraw();
             }
         }
 
         public float? CenterZ
         {
-            get => centerZ;
-            set
-            {
-                if (Nullable.Equals(value, centerZ)) return;
-                centerZ = value;
-                OnPropertyChanged(nameof(CenterZ));
-                Redraw();
-            }
+            get => float.TryParse(CenterZStr, NumberFormatInfo.CurrentInfo, out float result) ? result : null;
+            set => CenterZStr = value?.ToString();
         }
 
         public int? Circles
@@ -85,16 +104,22 @@ namespace KE.MSTS.HeadlightGen.ViewModels
             }
         }
 
-        public float? MaxRadius
+        public string? MaxRadiusStr
         {
-            get => maxRadius;
+            get => maxRadiusStr;
             set
             {
-                if (Nullable.Equals(value, maxRadius)) return;
-                maxRadius = value;
-                OnPropertyChanged(nameof(MaxRadius));
+                if (Nullable.Equals(value, maxRadiusStr)) return;
+                maxRadiusStr = value;
+                OnPropertyChanged(nameof(MaxRadiusStr));
                 Redraw();
             }
+        }
+
+        public float? MaxRadius
+        {
+            get => float.TryParse(MaxRadiusStr, NumberFormatInfo.CurrentInfo, out float result) ? result : null;
+            set => MaxRadiusStr = value?.ToString();
         }
 
         public int? Increment
