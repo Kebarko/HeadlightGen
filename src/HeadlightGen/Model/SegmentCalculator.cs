@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace KE.MSTS.HeadlightGen.Model;
 
@@ -22,13 +22,13 @@ public class SegmentCalculator
     public static IList<Point3D> Calculate(Point3D center, int circles, float maxRadius, int increment, int rotation, int elevation, out RectangleF boundingBox)
     {
         var result = new List<Point3D>();
-        
+
         if (circles <= 0 || maxRadius <= 0 || increment <= 0)
         {
             boundingBox = new RectangleF();
             return result;
         }
-        
+
         result.Add(center);
 
         for (int circle = 1; circle <= circles; circle++)
@@ -53,7 +53,7 @@ public class SegmentCalculator
             Width = 2 * maxRadius,
             Height = 2 * maxRadius
         };
-        
+
         return result;
     }
 }

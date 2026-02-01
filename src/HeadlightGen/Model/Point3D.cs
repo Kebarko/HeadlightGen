@@ -1,4 +1,4 @@
-namespace KE.MSTS.HeadlightGen.Model;
+﻿namespace KE.MSTS.HeadlightGen.Model;
 
 /// <summary>
 /// Represents a point in three-dimensional space with X, Y, and Z coordinates.

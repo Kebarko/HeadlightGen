@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -30,11 +30,11 @@ public class Renderer
         float scale = Math.Min(scaleX, scaleY);
 
         // Calculate scaled dimensions of points bounding box
-        float scaledWidth  = pointsBoudingBox.Width  * scale;
+        float scaledWidth = pointsBoudingBox.Width * scale;
         float scaledHeight = pointsBoudingBox.Height * scale;
 
         // Calculate offsets to center the drawing
-        float offsetX = (canvasWidth  - scaledWidth)  / 2;
+        float offsetX = (canvasWidth - scaledWidth) / 2;
         float offsetY = (canvasHeight - scaledHeight) / 2;
 
         // Transform points to canvas coordinates and flip Y axis

@@ -225,7 +225,7 @@ namespace KE.MSTS.HeadlightGen.ViewModels
         private void Generate(object? obj)
         {
             IList<Point3D> points = SegmentCalculator.Calculate(new Point3D(CenterX!.Value, CenterY!.Value, CenterZ!.Value), Circles!.Value, MaxRadius!.Value / 100, Increment!.Value, Rotation!.Value, Elevation!.Value, out _);
-            
+
             var openFileDialog = new OpenFileDialog()
             {
                 Title = "Select Template File",
@@ -258,9 +258,9 @@ namespace KE.MSTS.HeadlightGen.ViewModels
                 return;
 
             IList<Point3D> points = SegmentCalculator.Calculate(new Point3D(CenterX.Value, CenterY.Value, CenterZ.Value), Circles.Value, MaxRadius.Value / 100, Increment.Value, Rotation.Value, Elevation.Value, out RectangleF boudingBox);
-            
+
             TotalSegments = points.Count;
-            
+
             if (points.Count == 0)
                 return;
 
