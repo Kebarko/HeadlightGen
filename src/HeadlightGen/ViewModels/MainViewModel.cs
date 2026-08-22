@@ -23,6 +23,7 @@ namespace KE.MSTS.HeadlightGen.ViewModels
         private int? rotation;
         private int? elevation;
         private int? totalSegments;
+        private RenderView selectedView = RenderView.Front;
         private int? canvasWidth;
         private int? canvasHeight;
 
@@ -170,6 +171,20 @@ namespace KE.MSTS.HeadlightGen.ViewModels
             }
         }
 
+        public IReadOnlyList<RenderView> Views { get; } = Enum.GetValues<RenderView>();
+
+        public RenderView SelectedView
+        {
+            get => selectedView;
+            set
+            {
+                if (value == selectedView) return;
+                selectedView = value;
+                OnPropertyChanged(nameof(SelectedView));
+                Redraw();
+            }
+        }
+
         public int? CanvasHeight
         {
             get => canvasHeight;
@@ -264,7 +279,7 @@ namespace KE.MSTS.HeadlightGen.ViewModels
             if (points.Count == 0)
                 return;
 
-            foreach (var shape in Renderer.Render(CanvasWidth.Value, CanvasHeight.Value, boudingBox, points))
+            foreach (var shape in Renderer.Render(CanvasWidth.Value, CanvasHeight.Value, boudingBox, points, SelectedView))
             {
                 Shapes.Add(shape);
             }
