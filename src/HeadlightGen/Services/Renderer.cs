@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Shapes;
 using KE.MSTS.HeadlightGen.Model;
+using Brushes = System.Windows.Media.Brushes;
 
 namespace KE.MSTS.HeadlightGen.Services;
 
