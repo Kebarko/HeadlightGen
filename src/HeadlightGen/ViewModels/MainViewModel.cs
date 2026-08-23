@@ -12,27 +12,13 @@ namespace KE.MSTS.HeadlightGen.ViewModels;
 
 internal class MainViewModel : ViewModelBase
 {
-    private string? title;
-    private string? centerXStr;
-    private string? centerYStr;
-    private string? centerZStr;
-    private int? circles;
-    private string? maxRadiusStr;
-    private int? increment;
-    private int? rotation;
-    private int? elevation;
-    private int? totalSegments;
-    private RenderView selectedView = RenderView.Front;
-    private int? canvasWidth;
-    private int? canvasHeight;
-
     public string? Title
     {
-        get => title;
+        get;
         set
         {
-            if (value == title) return;
-            title = value;
+            if (value == field) return;
+            field = value;
             OnPropertyChanged(nameof(Title));
             Redraw();
         }
@@ -40,11 +26,11 @@ internal class MainViewModel : ViewModelBase
 
     public string? CenterXStr
     {
-        get => centerXStr;
+        get;
         set
         {
-            if (Nullable.Equals(value, centerXStr)) return;
-            centerXStr = value;
+            if (Nullable.Equals(value, field)) return;
+            field = value;
             OnPropertyChanged(nameof(CenterXStr));
             Redraw();
         }
@@ -58,11 +44,11 @@ internal class MainViewModel : ViewModelBase
 
     public string? CenterYStr
     {
-        get => centerYStr;
+        get;
         set
         {
-            if (Nullable.Equals(value, centerYStr)) return;
-            centerYStr = value;
+            if (Nullable.Equals(value, field)) return;
+            field = value;
             OnPropertyChanged(nameof(CenterYStr));
             Redraw();
         }
@@ -76,11 +62,11 @@ internal class MainViewModel : ViewModelBase
 
     public string? CenterZStr
     {
-        get => centerZStr;
+        get;
         set
         {
-            if (Nullable.Equals(value, centerZStr)) return;
-            centerZStr = value;
+            if (Nullable.Equals(value, field)) return;
+            field = value;
             OnPropertyChanged(nameof(CenterZStr));
             Redraw();
         }
@@ -94,11 +80,11 @@ internal class MainViewModel : ViewModelBase
 
     public int? Circles
     {
-        get => circles;
+        get;
         set
         {
-            if (value == circles) return;
-            circles = value;
+            if (value == field) return;
+            field = value;
             OnPropertyChanged(nameof(Circles));
             Redraw();
         }
@@ -106,11 +92,11 @@ internal class MainViewModel : ViewModelBase
 
     public string? MaxRadiusStr
     {
-        get => maxRadiusStr;
+        get;
         set
         {
-            if (Nullable.Equals(value, maxRadiusStr)) return;
-            maxRadiusStr = value;
+            if (Nullable.Equals(value, field)) return;
+            field = value;
             OnPropertyChanged(nameof(MaxRadiusStr));
             Redraw();
         }
@@ -124,11 +110,11 @@ internal class MainViewModel : ViewModelBase
 
     public int? Increment
     {
-        get => increment;
+        get;
         set
         {
-            if (value == increment) return;
-            increment = value;
+            if (value == field) return;
+            field = value;
             OnPropertyChanged(nameof(Increment));
             Redraw();
         }
@@ -136,11 +122,11 @@ internal class MainViewModel : ViewModelBase
 
     public int? Rotation
     {
-        get => rotation;
+        get;
         set
         {
-            if (Nullable.Equals(value, rotation)) return;
-            rotation = value;
+            if (Nullable.Equals(value, field)) return;
+            field = value;
             OnPropertyChanged(nameof(Rotation));
             Redraw();
         }
@@ -148,11 +134,11 @@ internal class MainViewModel : ViewModelBase
 
     public int? Elevation
     {
-        get => elevation;
+        get;
         set
         {
-            if (Nullable.Equals(value, elevation)) return;
-            elevation = value;
+            if (Nullable.Equals(value, field)) return;
+            field = value;
             OnPropertyChanged(nameof(Elevation));
             Redraw();
         }
@@ -160,11 +146,11 @@ internal class MainViewModel : ViewModelBase
 
     public int? TotalSegments
     {
-        get => totalSegments;
+        get;
         set
         {
-            if (value == totalSegments) return;
-            totalSegments = value;
+            if (value == field) return;
+            field = value;
             OnPropertyChanged(nameof(TotalSegments));
             Redraw();
         }
@@ -174,23 +160,23 @@ internal class MainViewModel : ViewModelBase
 
     public RenderView SelectedView
     {
-        get => selectedView;
+        get;
         set
         {
-            if (value == selectedView) return;
-            selectedView = value;
+            if (value == field) return;
+            field = value;
             OnPropertyChanged(nameof(SelectedView));
             Redraw();
         }
-    }
+    } = RenderView.Front;
 
     public int? CanvasHeight
     {
-        get => canvasHeight;
+        get;
         set
         {
-            if (value == canvasHeight) return;
-            canvasHeight = value;
+            if (value == field) return;
+            field = value;
             OnPropertyChanged(nameof(CanvasHeight));
             Redraw();
         }
@@ -198,11 +184,11 @@ internal class MainViewModel : ViewModelBase
 
     public int? CanvasWidth
     {
-        get => canvasWidth;
+        get;
         set
         {
-            if (value == canvasWidth) return;
-            canvasWidth = value;
+            if (value == field) return;
+            field = value;
             OnPropertyChanged(nameof(CanvasWidth));
             Redraw();
         }
