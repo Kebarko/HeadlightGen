@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Drawing;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
