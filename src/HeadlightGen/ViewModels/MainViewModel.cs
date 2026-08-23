@@ -211,6 +211,8 @@ namespace KE.MSTS.HeadlightGen.ViewModels
 
         public ObservableCollection<Shape> Shapes { get; } = new ObservableCollection<Shape>();
 
+        public ObservableCollection<UIElement> AxisTripod { get; } = new ObservableCollection<UIElement>();
+
         public ICommand GenerateCommand { get; }
 
         public MainViewModel()
@@ -267,21 +269,41 @@ namespace KE.MSTS.HeadlightGen.ViewModels
 
         private void Redraw()
         {
+            RedrawAxisTripod();
+
             Shapes.Clear();
 
             if (CanvasWidth == null || CanvasHeight == null || CenterX == null || CenterY == null || CenterZ == null || Circles == null || MaxRadius == null || Increment == null || Rotation == null || Elevation == null)
                 return;
 
-            IList<Point3D> points = SegmentCalculator.Calculate(new Point3D(CenterX.Value, CenterY.Value, CenterZ.Value), Circles.Value, MaxRadius.Value / 100, Increment.Value, Rotation.Value, Elevation.Value, out RectangleF boudingBox);
+            IList<Point3D> points = SegmentCalculator.Calculate(new Point3D(CenterX.Value, CenterY.Value, CenterZ.Value), Circles.Value, MaxRadius.Value / 100, Increment.Value, Rotation.Value, Elevation.Value, out _);
 
             TotalSegments = points.Count;
 
             if (points.Count == 0)
                 return;
 
-            foreach (var shape in Renderer.Render(CanvasWidth.Value, CanvasHeight.Value, boudingBox, points, SelectedView))
+            foreach (var shape in Renderer.Render(CanvasWidth.Value, CanvasHeight.Value, points, SelectedView))
             {
                 Shapes.Add(shape);
+            }
+        }
+
+        /// <summary>
+        /// Redraws the coloured axis tripod shown in the bottom-left corner of the canvas for the currently selected view.
+        /// </summary>
+        private void RedrawAxisTripod()
+        {
+            AxisTripod.Clear();
+
+            if (CanvasHeight == null)
+                return;
+
+            const double margin = 8;
+
+            foreach (UIElement element in Renderer.RenderAxisTripod(SelectedView, margin, CanvasHeight.Value - margin))
+            {
+                AxisTripod.Add(element);
             }
         }
     }
