@@ -102,10 +102,10 @@ public class Renderer
     {
         return view switch
         {
-            RenderView.Front => new PointF(point.X, point.Y),
-            RenderView.Back => new PointF(-point.X, point.Y),
-            RenderView.Left => new PointF(point.Z, point.Y),
-            RenderView.Right => new PointF(-point.Z, point.Y),
+            RenderView.Front => new PointF(-point.X, point.Y),
+            RenderView.Back => new PointF(point.X, point.Y),
+            RenderView.Left => new PointF(-point.Z, point.Y),
+            RenderView.Right => new PointF(point.Z, point.Y),
             RenderView.Top => new PointF(point.X, point.Z),
             RenderView.Bottom => new PointF(-point.X, point.Z),
             _ => throw new ArgumentOutOfRangeException(nameof(view), view, null)
@@ -129,8 +129,8 @@ public class Renderer
 
     /// <summary>
     /// Builds a 3ds Max-style coloured axis tripod indicating world orientation for the selected orthographic view.
-    /// The two axes lying in the view plane are drawn as arrows; the axis pointing straight at/away from the
-    /// viewer has no visible length, so it is drawn as a coloured dot at the origin instead.
+    /// Only the two axes lying in the view plane are drawn, as arrows; the third axis points straight at or away
+    /// from the viewer and so has no visible length.
     /// </summary>
     /// <param name="view">The orthographic view the tripod should represent.</param>
     /// <param name="originX">The X coordinate, in canvas pixels, of the tripod's origin.</param>
@@ -141,12 +141,12 @@ public class Renderer
     {
         (char HorizontalAxis, Brush HorizontalColor, int HorizontalSign, char VerticalAxis, Brush VerticalColor, char DepthAxis, Brush DepthColor) config = view switch
         {
-            RenderView.Front => ('X', Brushes.Red, 1, 'Y', Brushes.Green, 'Z', Brushes.DodgerBlue),
-            RenderView.Back => ('X', Brushes.Red, -1, 'Y', Brushes.Green, 'Z', Brushes.DodgerBlue),
-            RenderView.Left => ('Z', Brushes.DodgerBlue, 1, 'Y', Brushes.Green, 'X', Brushes.Red),
-            RenderView.Right => ('Z', Brushes.DodgerBlue, -1, 'Y', Brushes.Green, 'X', Brushes.Red),
-            RenderView.Top => ('X', Brushes.Red, 1, 'Z', Brushes.DodgerBlue, 'Y', Brushes.Green),
-            RenderView.Bottom => ('X', Brushes.Red, -1, 'Z', Brushes.DodgerBlue, 'Y', Brushes.Green),
+            RenderView.Front => ('X', Brushes.Red, -1, 'Y', Brushes.LimeGreen, 'Z', Brushes.DodgerBlue),
+            RenderView.Back => ('X', Brushes.Red, 1, 'Y', Brushes.LimeGreen, 'Z', Brushes.DodgerBlue),
+            RenderView.Left => ('Z', Brushes.DodgerBlue, -1, 'Y', Brushes.LimeGreen, 'X', Brushes.Red),
+            RenderView.Right => ('Z', Brushes.DodgerBlue, 1, 'Y', Brushes.LimeGreen, 'X', Brushes.Red),
+            RenderView.Top => ('X', Brushes.Red, 1, 'Z', Brushes.DodgerBlue, 'Y', Brushes.LimeGreen),
+            RenderView.Bottom => ('X', Brushes.Red, -1, 'Z', Brushes.DodgerBlue, 'Y', Brushes.LimeGreen),
             _ => throw new ArgumentOutOfRangeException(nameof(view), view, null)
         };
 
