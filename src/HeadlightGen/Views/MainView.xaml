@@ -139,7 +139,7 @@
 
             <Button Grid.Row="11" Grid.Column="1" Content="Generate" Command="{Binding GenerateCommand}" />
         </Grid>
-        <Canvas x:Name="MainCanvas" Grid.Row="0" Grid.Column="1" Margin="50" Loaded="CanvasLoaded"
+        <Canvas x:Name="MainCanvas" Grid.Row="0" Grid.Column="1" Margin="40" Loaded="CanvasLoaded"
                 SizeChanged="CanvasSizeChanged">
             <ItemsControl ItemsSource="{Binding Shapes}">
                 <ItemsControl.ItemsPanel>
